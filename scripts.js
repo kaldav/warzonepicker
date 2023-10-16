@@ -22,28 +22,34 @@ function splitIntoGroups(people) {
     }
 }
 
-function displayGroups(groups) {
-    const groupsContainer = document.getElementById('groups-container');
-    groupsContainer.innerHTML = '';
-
-    groups.forEach((group, index) => {
-        const groupDiv = document.createElement('div');
-        groupDiv.className = 'group';
-        groupDiv.innerHTML = `<h2>Csapat ${index + 1}</h2><ul>${group.map(person => `<li>${person}</li>`).join('')}</ul>`;
-        groupsContainer.appendChild(groupDiv);
-    });
-}
-
 function addPeople(){
     const selectedPeople = [];
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('.active');
     checkboxes.forEach(checkbox => {
-        if (checkbox.checked) {
-            selectedPeople.push(checkbox.name!="" ? checkbox.name : document.getElementById(checkbox.getAttribute('data-id')).value);
-        }
+        selectedPeople.push(checkbox.id);
     });   
 
     const groups = splitIntoGroups(shuffleArray(selectedPeople));
 
-    displayGroups(groups);
+    groups[0].forEach(id => {
+        $("#"+id+" > span").html("<span class='badge badge-danger'>1. csapat</span>");
+    });
+
+    groups[1].forEach(id => {
+        $("#"+id+" > span").html("<span class='badge badge-warning'>2. csapat</span>");
+    });
 }
+
+$('.list-group-item').on('click', function(item) {
+    if (!item.target.classList.contains('active')) {
+        item.target.classList.add('active');
+    }
+    else {
+        item.target.classList.remove('active');
+    }
+
+    const selectedPeople = document.querySelectorAll('.active').length;
+
+    $("#progress").css("width", selectedPeople*13+"%");
+    $("#progress").html(selectedPeople+" kiválasztott");
+});
