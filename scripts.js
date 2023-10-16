@@ -23,6 +23,7 @@ function splitIntoGroups(people) {
 }
 
 function addPeople(){
+    $(".list-group-item > span").html("");
     const selectedPeople = [];
     const checkboxes = document.querySelectorAll('.active');
     checkboxes.forEach(checkbox => {
