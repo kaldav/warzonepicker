@@ -54,3 +54,8 @@ $('.list-group-item').on('click', function(item) {
     $("#progress").css("width", selectedPeople*13+"%");
     $("#progress").html(selectedPeople+" kiválasztott");
 });
+
+function randomString(){
+
+    $("#string").html("Menjé játszani!");
+}
