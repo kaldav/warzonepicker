@@ -68,3 +68,4 @@ function randomString(){
     const random = date.getDate() % strings.length;
     $("#string").html(strings[random]);
 }
+randomString();
