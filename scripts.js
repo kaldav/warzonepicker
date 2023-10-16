@@ -56,6 +56,15 @@ $('.list-group-item').on('click', function(item) {
 });
 
 function randomString(){
+    const strings = [
+        "Menjé játszani", "Top 3, úgyhogy kussoljatok el!", "Itt vannak! Jó de hol?", 
+        "Dávid a király!", "Az kamu!!", "Tanuljatok egy kicsit, ezt nézd!", "Hozok sört, szarok rá!",
+        "Mit nyomjunk? Hát négyen vagyunk, legyen quad!", "Hozok egy ilyen Lidlös sört, az jó lesz!",
+        "Már boroztam, de szarok rá!"
+    ];
 
-    $("#string").html("Menjé játszani!");
+    //generate a random string based on date, it should be fixed on a day
+    const date = new Date();
+    const random = date.getDate() % strings.length;
+    $("#string").html(strings[random]);
 }
